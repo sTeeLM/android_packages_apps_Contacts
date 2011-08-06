@@ -184,6 +184,23 @@
             android:entries="@array/view_default_phone_tabs"
             android:entryValues="@array/entryvalues_numbers"
             android:defaultValue="0" />
+          <PreferenceScreen
+            android:key="calllocate_setting"
+            android:title="@string/title_calllocate_setting"
+            android:summary="@string/summary_calllocate_setting">  
+                <Preference
+                    android:key="calllocate_backup_to_sd"
+                    android:title="@string/title_calllocate_backup_to_sd"
+                    android:summary="@string/summary_calllocate_backup_to_sd"/>
+                <Preference
+                    android:key="calllocate_copy_from_sd"
+                    android:title="@string/title_calllocate_copy_from_sd"
+                   android:summary="@string/summary_calllocate_copy_from_sd" />
+                <Preference
+                    android:key="calllocate_about"
+                    android:title="@string/title_calllocate_about"
+                    android:summary="@string/summary_calllocate_about"/>
+        </PreferenceScreen>
         <PreferenceScreen
             android:key="misc_about"
             android:title="@string/title_about"> 

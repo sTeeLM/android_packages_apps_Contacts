@@ -476,7 +476,25 @@
     <string name="title_misc_category">其他设定</string>
     <string name="title_sensor_rotation">使用重力感应</string>
     <string name="summary_sensor_rotation">如果允许该项，拨号面板将会根据设定旋转方向"</string>
-    
+
+	<!-- Preferences: Callocate -->
+    <string name="title_calllocate_setting">号码段反查</string>
+    <string name="summary_calllocate_setting">设置号码段反查数据库</string> 
+    <string name="title_calllocate_backup_to_sd">备份数据到SD卡</string>
+    <string name="summary_calllocate_backup_to_sd">备份数据到文件/mnt/sdcard/calllocate.db</string>
+    <string name="title_calllocate_copy_from_sd">从SD卡装载数据</string>    
+    <string name="summary_calllocate_copy_from_sd">从文件/mnt/sdcard/calllocate.db装载</string>
+    <string name="title_calllocate_about">关于</string>
+    <string name="summary_calllocate_about">by sTeeL, 即 michael, 或者 李闻</string>    
+    <string name="phone_code">区号</string>
+    <string name="post_code">邮编</string>  
+    <string name="copying_file">正在拷贝文件...</string>
+    <string name="copy_file_ok">拷贝文件成功！</string>
+    <string name="copy_file_failed">拷贝文件失败！</string>
+    <string name="sdcard_not_ready">SDCard 没有准备好</string>
+    <string name="last_update">最后更新时间</string>
+    <string name="record_count">记录数</string>
+        
     <!-- Wysie: About strings -->
     <string name="title_about">关于</string>
     <string name="title_about_name">插件名称</string>

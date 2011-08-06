@@ -30,6 +30,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.ContentResolver;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
@@ -223,6 +224,10 @@ public class RecentCallsListActivity extends ListActivity
         TextView groupSize;
         
         View dividerView;
+
+        TextView locationType;
+        TextView phoneCode;
+        TextView postCode;
     }
 
     static final class CallerInfoQuery {
@@ -714,7 +719,11 @@ public class RecentCallsListActivity extends ListActivity
             views.callView.setOnClickListener(this);
             views.groupIndicator = (ImageView) view.findViewById(R.id.groupIndicator);
             views.groupSize = (TextView) view.findViewById(R.id.groupSize);
-            
+
+            views.locationType = (TextView) view.findViewById(R.id.location_type);
+            views.phoneCode = (TextView) view.findViewById(R.id.phone_code);           
+            views.postCode = (TextView) view.findViewById(R.id.post_code);          
+
             //Wysie: Contact pictures
             views.photoView = (QuickContactBadge) view.findViewById(R.id.photo);
             views.photoView.setOnClickListener(this);
@@ -864,7 +873,69 @@ public class RecentCallsListActivity extends ListActivity
                 views.numberView.setVisibility(View.GONE);
                 views.labelView.setVisibility(View.GONE);
             }          
-            
+
+        // calllocation , first lookup number, then formattedNumber
+        //    Log.w("CALLOCATE","info.formattedNumber="+info.formattedNumber+" info.number=" +  info.number + " formattedNumber="+formattedNumber+"number="+number);             
+
+            String callocateString=null;
+            String phoneCodeString=null;
+            String postCodeString=null;
+            ContentResolver cr = context.getContentResolver();
+            Cursor cu = null;
+            try {
+              if(null != number) {
+                  cu = cr.query(Uri.parse(
+                      "content://com.liwen.callocate/callocate" + "/" + number),
+                  null, null, null, null);
+                  if(null != cu && cu.moveToFirst()) {
+                      callocateString = cu.getString(cu.getColumnIndex("location")) + " " + cu.getString(cu.getColumnIndex("type"));
+                      phoneCodeString= getString(R.string.phone_code) + cu.getString(cu.getColumnIndex("code"));
+                      postCodeString = getString(R.string.post_code) + " " +cu.getString(cu.getColumnIndex("post"));
+                      //views.locationType.setText(calllocateLocation + " " + calllocateType);
+                      cu.close();
+                   } else if(null != formattedNumber){
+                       cu = cr.query(Uri.parse(
+                           "content://com.liwen.callocate/callocate" + "/" + formattedNumber),
+                       null, null, null, null);              
+                       if(null != cu && cu.moveToFirst()) {
+                          callocateString = cu.getString(cu.getColumnIndex("location"))+ " " + cu.getString(cu.getColumnIndex("type"));
+                         phoneCodeString= getString(R.string.phone_code) + cu.getString(cu.getColumnIndex("code"));
+                        postCodeString = getString(R.string.post_code) + " " +cu.getString(cu.getColumnIndex("post"));                         
+                         cu.close();   
+                       }else if(cu != null) {
+                              cu.close();   
+              }
+                   }else if(cu != null) {
+                       cu.close();   
+              }
+         }
+           }catch (Exception e){
+             Log.e(TAG,"query calllocate error in RecentCallsListActivity.java: "+e);  
+       }
+
+             
+       if(null != views.locationType)    {
+              if(null != callocateString) {
+                views.locationType.setText(callocateString);        
+              } else {
+                views.locationType.setText(getString(R.string.unknown));  
+          }
+      }
+       if(null != views.phoneCode)    {
+              if(null != phoneCodeString) {
+                views.phoneCode.setText(phoneCodeString);        
+              } else {
+                views.phoneCode.setText(getString(R.string.unknown));  
+          }
+      }       
+       if(null != views.postCode)    {
+              if(null != postCodeString) {
+                views.postCode.setText(postCodeString);        
+              } else {
+                views.postCode.setText(getString(R.string.unknown));  
+          }
+      }               
+
             //Wysie: Contact pictures
             if (mDisplayPhotos) {
                 long photoId = info.photoId;

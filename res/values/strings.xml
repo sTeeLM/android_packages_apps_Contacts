@@ -1116,9 +1116,6 @@
     <!-- Field title for the phonetic family name of a contact -->
     <string name="name_phonetic_family">Phonetic family name</string>
 
-    <!-- Field title for the date for an event -->
-    <string name="label_date">Date</string>
-
     <!-- String describing which account type a contact came from when editing it -->
     <string name="account_type_format"><xliff:g id="source" example="Gmail">%1$s</xliff:g> contact</string>
 
@@ -1284,7 +1281,27 @@
     <string name="default_phone_tab_call_log">Call log</string>
     <string name="default_phone_tab_contacts">Contacts</string>
     <string name="default_phone_tab_favorites">Favorites</string>
+
+	<!-- Caller location -->
+    <string name="title_calllocate_setting">Caller location</string>
+    <string name="summary_calllocate_setting">setting of caller location</string>   
+    <string name="title_calllocate_backup_to_sd">Backup database to SD card</string>
+    <string name="summary_calllocate_backup_to_sd">Backup to /mnt/sdcard/calllocate.db</string>
+    <string name="title_calllocate_copy_from_sd">Copy database from SD card</string>    
+    <string name="summary_calllocate_copy_from_sd">Copy from  /mnt/sdcard/calllocate.db</string>
+    <string name="title_calllocate_about">About</string>
+    <string name="summary_calllocate_about">by sTeeL, aka michael, aka liwen</string>
     
+    <string name="phone_code">Phone Code</string>
+    <string name="post_code">Post Code</string>
+    <string name="copying_file">Copying file...</string>
+    <string name="copy_file_ok">Copying file succeed!</string>
+    <string name="copy_file_failed">Copying file failed!</string>
+    <string name="sdcard_not_ready">SDCard not ready</string>
+    <string name="last_update">Last update</string>
+    <string name="record_count">Record count</string>
+     
+
     <!-- Wysie: About strings -->    
     <string name="title_about">About</string>
     <string name="title_about_name">Mod Name</string>
